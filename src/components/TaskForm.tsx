@@ -23,24 +23,27 @@ export default function TaskForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 mb-6 max-w-2xl w-full mx-auto px-4 sm:px-6"
+    >
       <input
         type="text"
         placeholder="Título da tarefa"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
+        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
       <textarea
         placeholder="Descrição"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full px-3 py-2 border rounded"
+        className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm resize-none h-28 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
       <button
         type="submit"
         disabled={isPending}
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        className="w-full sm:w-auto bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
       >
         {isPending ? 'Salvando...' : 'Criar Tarefa'}
       </button>

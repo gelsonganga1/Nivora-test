@@ -1,4 +1,3 @@
-// src/components/TaskCard.tsx
 'use client';
 
 import { Task } from '@/types/task';
@@ -31,33 +30,35 @@ export default function TaskCard({ task }: Props) {
   };
 
   return (
-    <div className="p-4 rounded border bg-white text-gray-800 shadow flex justify-between items-start">
-  <div>
-    <h2 className={`font-bold text-lg ${task.completed ? 'line-through text-gray-500' : ''}`}>
-      {task.title}
-    </h2>
-    <p className={`text-sm ${task.completed ? 'line-through text-gray-500' : ''}`}>
-      {task.description}
-    </p>
-    <p className="text-xs text-gray-500 mt-1">
-      Status: {task.completed ? 'Concluída' : 'Pendente'}
-    </p>
-  </div>
-  <div className="flex gap-2">
-    <button
-      onClick={handleComplete}
-      className="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-    >
-      {task.completed ? 'Desfazer' : 'Concluir'}
-    </button>
-    <button
-      onClick={handleDelete}
-      className="px-2 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
-    >
-      Remover
-    </button>
-  </div>
-</div>
+    <div className="p-4 rounded border bg-white text-gray-800 shadow flex flex-col sm:flex-row justify-between gap-4 sm:items-start">
+      <div className="flex-1">
+        <h2 className={`font-bold text-lg break-words ${task.completed ? 'line-through text-gray-500' : ''}`}>
+          {task.title}
+        </h2>
+        <p className={`text-sm break-words ${task.completed ? 'line-through text-gray-500' : ''}`}>
+          {task.description}
+        </p>
+        <p className="text-xs text-gray-500 mt-1">
+          Status: {task.completed ? 'Concluída' : 'Pendente'}
+        </p>
+      </div>
 
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={handleComplete}
+          disabled={isPending}
+          className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+        >
+          {task.completed ? 'Desfazer' : 'Concluir'}
+        </button>
+        <button
+          onClick={handleDelete}
+          disabled={isPending}
+          className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+        >
+          Remover
+        </button>
+      </div>
+    </div>
   );
 }
